@@ -2,7 +2,7 @@
 
 -   10
 -   **Only javaScript**
--   HTML, CSS and JS**
+-   HTML, CSS and JS
 
 ## 2. How many programming languages can you use on the Backend?
 
