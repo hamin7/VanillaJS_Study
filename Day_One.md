@@ -1,19 +1,19 @@
 ## 1. How many programmming languages can you use on. the Frontend?
 
 -   10
--   Only javaScript
--   **HTML, CSS and JS**
+-   **Only javaScript**
+-   HTML, CSS and JS**
 
 ## 2. How many programming languages can you use on the Backend?
 
--   More than 10
+-   **More than 10**
 -   Only JavaScript
--   **Only Python**
+-   Only Python
 
 ## 3. Can you make a video game using JavaScript?
 
--   Yes
--   **No**
+-   **Yes**
+-   No
 
 ## 4. What is the specification behind JavaScript?
 
@@ -49,8 +49,8 @@
 
 ## 9. <script> is a self closing tag
 
--   **Yes**
--   No
+-   Yes
+-   **No**
 
 ## 10. <script> should be at the top of the
 
