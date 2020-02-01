@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <title>Something</title>
-    <link rel="stylesheet" href="index.css"/>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
   </head>
-
   <body>
-    <div class="js-clock">
-      <h1>00:00</h1>
-    </div>
-    <form class="js-form form">
-      <input type="text" placeholder="what is your name?" />
-    </form>
-    <h4 class="js-greetings greetings"></h4>
-    <script src="clock.js"></script>
-    <script src="greeting.js"></script>
+    <h1>Where are you from?</h1>
+    <select class="js-select select">
+      <option value="">--- Choose Your Country ---</option>
+      <option value="korea">Korea</option>
+      <option value="greece">Greece</option>
+      <option value="turkey">Turkey</option>
+      <option value="finland">Finland</option>
+    </select>
+
+    <div class="result"></div>
+    <script src="src/index.js"></script>
   </body>
 </html>
