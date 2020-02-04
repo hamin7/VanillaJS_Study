@@ -1,5 +1,5 @@
 // <⚠️ DONT DELETE THIS ⚠️>
-// import "./styles.css";
+import "./styles.css";
 // <⚠️ /DONT DELETE THIS ⚠️>
 
 const toDoForm = document.querySelector(".js-toDoForm");
@@ -13,6 +13,7 @@ const FINISHED_LS = "finisheds"; // finished localStorage.
 let pendings = [];
 let finisheds = [];
 
+// Add task form에 글을 적어 제출하면 Pending에 넣는 함수.
 function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
@@ -20,6 +21,7 @@ function handleSubmit(event) {
   toDoInput.value = "";
 }
 
+// ⏪버튼을 누르면 Finished에서 Pending으로 이동하는 함수.
 function moveFinishedToPending(event) {
   event.preventDefault();
   const btn = event.target; // 누른 버튼 가리킴.
@@ -29,6 +31,7 @@ function moveFinishedToPending(event) {
   paintPending(text);
 }
 
+// ✅버튼을 누르면 Pending에서 Finished로 이동하는 함수.
 function movePendingToFinished(event) {
   event.preventDefault();
   const btn = event.target; // 누른 버튼 가리킴.
@@ -38,7 +41,7 @@ function movePendingToFinished(event) {
   paintFinished(text);
 }
 
-// finished를 삭제하는 함수.
+// ❌를 누르면 해당항목을 Finished에서 삭제하는 함수.
 function deleteFinished(event) {
   const btn = event.target; // 어떤 버튼이 클릭 되었는지 알기 위해 event.target.
   const li = btn.parentNode; // id 비교하기 위해 parentNode.
@@ -50,7 +53,7 @@ function deleteFinished(event) {
   finisheds = cleanFinisheds;
 }
 
-//  pending을 삭제하는 함수.
+//  ❌를 누르면 해당항목을 Pending에서 삭제하는 함수.
 function deletePending(event) {
   const btn = event.target; // 어떤 버튼이 클릭 되었는지 알기 위해 event.target.
   const li = btn.parentNode; // id 비교 하기 위해 parentNode.
@@ -63,16 +66,17 @@ function deletePending(event) {
   savePendings();
 }
 
-// finisheds를 가져와서 localStorage에 저장하는 함수.
+// Finisheds를 가져와서 localStorage에 저장하는 함수.
 function saveFinisheds() {
   localStorage.setItem(FINISHED_LS, JSON.stringify(finisheds));
 }
 
-// pendings를 가져와서 localStorage에 저장하는 함수.
+// Pendings를 가져와서 localStorage에 저장하는 함수.
 function savePendings() {
   localStorage.setItem(PENDINGS_LS, JSON.stringify(pendings));
 }
 
+// finished에 저장되어 있는 항목을 출력하는 함수.
 function paintFinished(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
@@ -102,6 +106,7 @@ function paintFinished(text) {
   saveFinisheds(); // localStorage에 저장하는 finisheds 함수 호출.
 }
 
+// pending에 저장되어 있는 항목을 출력하는 함수.
 function paintPending(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
@@ -131,6 +136,7 @@ function paintPending(text) {
   savePendings(); // localStorage에 저장하는 savePendings 함수 호출.
 }
 
+// localStorage에서 key값이 Finished인 것들을 불러오는 함수.
 function loadFinisheds() {
   const loadFinisheds = localStorage.getItem(FINISHED_LS); // finisheds 가져오기.
   if (loadFinisheds !== null) {
@@ -141,6 +147,7 @@ function loadFinisheds() {
   }
 }
 
+// localStorage에서 key값이 Pending인 것들을 불러오는 함수.
 function loadPendings() {
   const loadPendings = localStorage.getItem(PENDINGS_LS); // pendings 가져오기.
   if (loadPendings !== null) {
