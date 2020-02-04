@@ -13,8 +13,33 @@ const FINISHED_LS = "finisheds"; // finished localStorage.
 let pendings = [];
 let finisheds = [];
 
+function handleSubmit(event) {
+  event.preventDefault();
+  const currentValue = toDoInput.value;
+  paintPending(currentValue);
+  toDoInput.value = "";
+}
+
+function moveFinishedToPending(event) {
+  event.preventDefault();
+  const btn = event.target; // 누른 버튼 가리킴.
+  const cancelButton = btn.previousSibling; // 취소버튼 선택.
+  const text = cancelButton.previousSibling.textContent; // 이제 span안의 옮길 텍스트 선택.
+
+  paintPending(text);
+}
+
+function movePendingToFinished(event) {
+  event.preventDefault();
+  const btn = event.target; // 누른 버튼 가리킴.
+  const cancelButton = btn.previousSibling; // 취소버튼 선택.
+  const text = cancelButton.previousSibling.textContent; // 이제 span안의 옮길 텍스트 선택.
+
+  paintFinished(text);
+}
+
 // finished를 삭제하는 함수.
-function deleteFinished() {
+function deleteFinished(event) {
   const btn = event.target; // 어떤 버튼이 클릭 되었는지 알기 위해 event.target.
   const li = btn.parentNode; // id 비교하기 위해 parentNode.
   finishedList.removeChild(li); // target의 parentNode인 li를 제거.
@@ -23,7 +48,6 @@ function deleteFinished() {
     return finished.id !== parseInt(li.id);
   });
   finisheds = cleanFinisheds;
-  saveFinisheds();
 }
 
 //  pending을 삭제하는 함수.
@@ -55,11 +79,17 @@ function paintFinished(text) {
   delBtn.innerText = "❌";
   delBtn.addEventListener("click", deleteFinished); // 클릭하면 deleteFinished 함수 실행.
 
+  const moveBtn = document.createElement("button");
+  moveBtn.innerText = "⏪";
+  moveBtn.addEventListener("click", moveFinishedToPending);
+  moveBtn.addEventListener("click", deleteFinished);
+
   const span = document.createElement("span");
   const newId = finisheds.length + 1; // finisheds 배열의 길이 + 1 이 새로운 id.
   span.innerText = text;
   li.appendChild(span); // li에 text인 span이 먼저 나오고.
   li.appendChild(delBtn); // 그 후에 delBtn❌이 붙음.
+  li.appendChild(moveBtn); // 그 후 moveBtn ✅ 도 붙음.
   li.id = newId; // ❌눌렀을 때 어느것을 삭제해야 할 지 알아야 하기 때문에 id 붙이기.
   finishedList.appendChild(li);
 
@@ -78,11 +108,17 @@ function paintPending(text) {
   delBtn.innerText = "❌";
   delBtn.addEventListener("click", deletePending); // 클릭하면 deletePending 실행.
 
+  const moveBtn = document.createElement("button");
+  moveBtn.innerText = "✅";
+  moveBtn.addEventListener("click", movePendingToFinished);
+  moveBtn.addEventListener("click", deletePending);
+
   const span = document.createElement("span");
   const newId = pendings.length + 1; // pendings 배열의 길이 + 1 이 새로운 id.
   span.innerText = text;
   li.appendChild(span); // li에 text인 span이 먼저 나오고.
   li.appendChild(delBtn); // 그 후에 delBtn❌이 붙음.
+  li.appendChild(moveBtn); // 그 후 moveBtn ✅ 도 붙음.
   li.id = newId; // ❌눌렀을 때 어느것을 삭제해야 할 지 알아야 하기 때문에 id 붙이기.
   pendingList.appendChild(li);
 
@@ -93,13 +129,6 @@ function paintPending(text) {
   };
   pendings.push(pendingObj); // pendings 배열에 element 하나 push.
   savePendings(); // localStorage에 저장하는 savePendings 함수 호출.
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  const currentValue = toDoInput.value;
-  paintPending(currentValue);
-  toDoInput.value = "";
 }
 
 function loadFinisheds() {
@@ -118,7 +147,7 @@ function loadPendings() {
     const parsedPendings = JSON.parse(loadPendings);
     // console.log(parsedPendings);
     parsedPendings.forEach(function(pending) {
-      paintPending(pending.text); // 각각의 pending.text에 대하여 paintToDo 실행.
+      paintPending(pending.text); // 각각의 pending.text에 대하여 paintPending 실행.
     });
   }
 }
