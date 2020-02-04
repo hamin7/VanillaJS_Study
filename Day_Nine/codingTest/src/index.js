@@ -15,7 +15,7 @@ let finisheds = [];
 
 // Add task form에 글을 적어 제출하면 Pending에 넣는 함수.
 function handleSubmit(event) {
-  event.preventDefault();
+  event.preventDefault(); // 이거 사실 왜 있는지 모르겠음.
   const currentValue = toDoInput.value;
   paintPending(currentValue);
   toDoInput.value = "";
@@ -51,6 +51,7 @@ function deleteFinished(event) {
     return finished.id !== parseInt(li.id);
   });
   finisheds = cleanFinisheds;
+  saveFinisheds();
 }
 
 //  ❌를 누르면 해당항목을 Pending에서 삭제하는 함수.
