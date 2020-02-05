@@ -6,8 +6,31 @@ const form = document.getElementById("js-selectNumber");
 const input = form.querySelector("input");
 const choose = document.querySelector(".js-choose");
 const win = document.querySelector(".js-win");
+const range = document.querySelector(".js-range");
+const rangeBar = document.querySelector(".slider_range");
 
 const SELECTED_NB = "selectedNumber";
+const MACHINECHOICE = "machineChoice";
+
+function loadMachineChoice(){
+    const loadedMachineChoice = localStorage.getItem(MACHINECHOICE);
+    if(loadedMachineChoice !== null){
+        const paredMachineChoice = JSON.parse(loadedMachineChoice);
+        console.log(parsedMachineChoice)
+    }
+    //return loadedMachineChoice;
+}
+
+function saveMachineChoice(machineChoice){
+    localStorage.setItem(MACHINECHOICE, machineChoice);
+}
+
+/*
+function showSliderValue(sVal){
+    console.log(sVal)
+    //range.innerText = `Generate a Number between 0 and ${this.sVal}`
+}
+*/
 
 function paintChoose(user, machine){
     form.classList.remove(SELECTED_NB);     // 이거 무슨 기능?
@@ -26,28 +49,34 @@ function paintChoose(user, machine){
 
 function loadChoose(){
     const selectedNumber = localStorage.getItem(SELECTED_NB);
-    const computerChoice = makeRandom(0,10000);
+    const computerChoice = makeRandom();
     if(selectedNumber === null){
-        // she is not
     } else {
-        // she is
         paintChoose(selectedNumber, computerChoice);
     }
 }
 
 function handleFormSubmit(event){
-    const computerChoice = makeRandom(0,10000);
+    const computerChoice = makeRandom();
     const selectedNumber = input.value;
-    console.log(selectedNumber);
+    //console.log(selectedNumber);
     paintChoose(selectedNumber, computerChoice);
 }
 
-function makeRandom(min, max) {
+function makeRandom() {
+    const min = 0;
+    const max = loadMachineChoice;
+    console.log(max)
     const RandVal = Math.floor(Math.random()*(max-min+1)) + min;
     return RandVal;
 }
 
 function init(){
+    rangeBar.addEventListener("input", function(){
+        range.innerText = `Generate a Number between 0 and ${rangeBar.value}`;
+        saveMachineChoice(rangeBar.value);
+
+    }, false);
 }
 
 init();
