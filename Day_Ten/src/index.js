@@ -1,5 +1,5 @@
 // <⚠️ DONT DELETE THIS ⚠️>
-// import "./styles.css";
+import "./styles.css";
 // <⚠️ /DONT DELETE THIS ⚠️>
 
 const form = document.getElementById("js-selectNumber");
@@ -21,9 +21,9 @@ function paintChoose(user, machine) {
   choose.innerText = `You choose: ${userChoice}, the machine choose: ${machineChoice}`;
   //console.log(userChoice, machineChoice);
   if (userChoice >= machineChoice) {
-    win.innerText = `You Win`;
+    win.innerText = `You Won!`;
   } else if (userChoice === machineChoice) {
-    win.innerText = `Draw`;
+    win.innerText = `Draw!`;
   } else if (userChoice <= machineChoice) {
     win.innerText = `You lost!`;
   }
