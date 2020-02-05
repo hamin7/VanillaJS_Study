@@ -9,22 +9,12 @@
     <h1>Random Number Game</h1>
     <h2>Generate a Number between 0 and 130</h2>
 
-    <!--
-    <h4>
-      Guess a Number:
-      <form class="js-generateNumber">
-        <input type="submit" placeholder="" />
-      </form>
-    </h4>
-    -->
-
-    <form action="src/index.js" id="js-selectNumber">
+    <form id="js-selectNumber">
       Guess a Number : <input type="text" name="selectedNumber" value="" />
-      <input type="button" id="btn" value="play" />
+      <input type="button" value="play" onclick="handleFormSubmit()"/>
     </form>
 
     <h4 class="js-choose choose"></h4>
-    <!--You choose, the machine choose-->
     <h4 class="js-win win"></h4>
 
     <script src="src/index.js"></script>
