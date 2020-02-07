@@ -28,7 +28,7 @@ let Element2 = "";
 let op = "";
 let result = "";
 let isFirstOperator = true;
-let whetherEqualAppeared = true;
+let equalNotAppeared = true;
 
 function selectedBtn(id) {
   temp += id;
@@ -36,11 +36,11 @@ function selectedBtn(id) {
 }
 
 function selectedOp(id) {
-  if(whetherEqualAppeared){
-    
-  }
   if(isFirstOperator){
-    result = temp;  // result는 중간 결과
+    if(equalNotAppeared){
+      // =의 결과 나온 후 계속 계산하는 경우.
+      result = temp;  // result는 중간 결과
+    }
     isFirstOperator = false;
   } else {
     Element1 = result;  // 중간 계산 결과를 Element1에 담고
@@ -62,8 +62,8 @@ function getResult() {
   result = eval(calculate);   // result는 단계 계산 값.
   showText.value = result;  // 중간결과값 보여주기.
   temp = "";  // temp 초기화
-  op = id;  // 다음에 할 연산.
-  whetherEqualAppeared = false;
+  isFirstOperator = true;
+  equalNotAppeared = false;
 }
 
 // 초기화 함수.
@@ -75,6 +75,9 @@ function clearAll() {
   let op = "";
   let result = "";
   let isFirstOperator = true;
+  let equalNotAppeared = true;
+  showText.value = result;
+  console.log(temp)
 }
 
 function init() {
