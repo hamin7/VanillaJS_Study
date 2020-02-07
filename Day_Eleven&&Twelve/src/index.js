@@ -72,7 +72,7 @@ function clearAll() {
   Element1 = "";
   Element2 = "";
   op = "";
-  result = "";
+  result = "0";
   isFirstOperator = true;
   equalNotAppeared = true;
   showText.value = result;
