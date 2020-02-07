@@ -22,56 +22,59 @@ const btnPlusNMinus = document.getElementById("btnPlusNMinus");
 const btnDivide = document.getElementById("btnDivide");
 
 let calculate = "";
-let text1 = "";
+let temp = "";
+let Element1 = "";
+let Element2 = "";
 let op = "";
-let text2 = "";
 let result = "";
+let isFirstOperator = true;
+let whetherEqualAppeared = true;
 
 function selectedBtn(id) {
-  //첫번째 피 연산자 구분
-  if (op == "") {
-    text1 += id;
-  } else {
-    text1 = result;
-    text2 += id;
-  } // end of if ~ else
-
-
-  calculate = text1 + " " + op + " " + text2;    // calculate는 아직 계산 안한 식.
-  result = eval(calculate);   // result는 단계 계산 값.
-  showText.value = result;
-
-  
-
-  //calculate = calculate +id;
-  //showText.value = showText.value + id;
+  temp += id;
+  showText.value = temp;
 }
 
 function selectedOp(id) {
-  op = id;
-  //calculate = result + " " + op + " ";
-  //console.log(calculate)
-  //showText.value = text1 + " " + op + " ";
+  if(whetherEqualAppeared){
+    
+  }
+  if(isFirstOperator){
+    result = temp;  // result는 중간 결과
+    isFirstOperator = false;
+  } else {
+    Element1 = result;  // 중간 계산 결과를 Element1에 담고
+    Element2 = temp;  // 두번째 피연산자를 Elment2에 넣기.
+    calculate = Element1 + " " + op + " " + Element2;    // calculate는 아직 계산 안한 식.
+    console.log(calculate)
+    result = eval(calculate);   // result는 단계 계산 값.
+  }
+  showText.value = result;  // 중간결과값 보여주기.
+  temp = "";  // temp 초기화
+  op = id;  // 다음에 할 연산.
 }
 
 function getResult() {
-  result = calculate;
-
-  showText.value = eval(result);
-
-  text1 = eval(result);
-  op = "";
-  text2 = "";
-  result = "";
+  Element1 = result;  // 중간 계산 결과를 Element1에 담고
+  Element2 = temp;  // 두번째 피연산자를 Elment2에 넣기.
+  calculate = Element1 + " " + op + " " + Element2;    // calculate는 아직 계산 안한 식.
+  console.log(calculate)
+  result = eval(calculate);   // result는 단계 계산 값.
+  showText.value = result;  // 중간결과값 보여주기.
+  temp = "";  // temp 초기화
+  op = id;  // 다음에 할 연산.
+  whetherEqualAppeared = false;
 }
 
+// 초기화 함수.
 function clearAll() {
-  text1 = "";
-  text2 = "";
-  op = "";
-  result = "";
-  showText.value = "";
-  calculate = "";
+  let calculate = "";
+  let temp = "";
+  let Element1 = "";
+  let Element2 = "";
+  let op = "";
+  let result = "";
+  let isFirstOperator = true;
 }
 
 function init() {
