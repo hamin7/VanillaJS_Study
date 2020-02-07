@@ -1,3 +1,64 @@
 body {
   font-family: sans-serif;
 }
+
+#Calculator {
+  background-color: #2d3436;
+  padding: 10px;
+  border-radius: 30px;
+  font-family: sans-serif;
+}
+
+#btn1,
+#btn2,
+#btn3,
+#btn4,
+#btn5,
+#btn6,
+#btn7,
+#btn8,
+#btn9,
+#btn0 {
+  width: 60px;
+  padding: 5px 10px;
+  margin: 2px 1px;
+  border: 1px solid white;
+  border-radius: 50px;
+  color: bisque;
+  background-color: rgb(95, 100, 105);
+  font-size: 13pt;
+  display: inline-block;
+  font-family: sans-serif;
+}
+
+#btnPlus,
+#btnMinus,
+#btnMulti,
+#btnDivide,
+#clearBtn,
+#equal {
+  width: 60px;
+  padding: 5px 10px;
+  margin: 2px 1px;
+  border: 1px solid white;
+  border-radius: 50px;
+  color: bisque;
+  background-color: rgb(6, 138, 94);
+  font-size: 13pt;
+  display: inline-block;
+  font-family: sans-serif;
+}
+
+#btn0 {
+  width: 130px;
+  font-family: sans-serif;
+}
+
+#showText {
+  width: 190px;
+  height: 30px;
+  font-size: 15pt;
+  background-color: #dcdde1;
+  border-radius: 50px;
+  font-family: sans-serif;
+}
